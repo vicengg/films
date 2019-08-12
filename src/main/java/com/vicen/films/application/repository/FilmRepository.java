@@ -11,4 +11,6 @@ public interface FilmRepository {
     Film createFilm(Film film);
 
     List<Film> getFilms();
+
+    Film getFilm(UUID filmId);
 }

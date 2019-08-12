@@ -1,6 +1,7 @@
 package com.vicen.films.application.service;
 
 import com.vicen.films.application.commands.CreateFilmCommand;
+import com.vicen.films.application.queries.GetFilmQuery;
 import com.vicen.films.application.queries.GetFilmsQuery;
 import com.vicen.films.domain.films.Film;
 
@@ -11,4 +12,6 @@ public interface FilmService {
     Film createFilm(CreateFilmCommand command);
 
     List<Film> getFilms(GetFilmsQuery query);
+
+    Film getFilm(GetFilmQuery query);
 }

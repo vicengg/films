@@ -1,6 +1,7 @@
 package com.vicen.films.application.service;
 
 import com.vicen.films.application.commands.CreateFilmCommand;
+import com.vicen.films.application.queries.GetFilmQuery;
 import com.vicen.films.application.queries.GetFilmsQuery;
 import com.vicen.films.application.repository.FilmRepository;
 import com.vicen.films.application.repository.StaffRepository;
@@ -25,6 +26,11 @@ public class FilmServiceImpl implements FilmService {
     @Override
     public List<Film> getFilms(GetFilmsQuery query) {
         return filmRepository.getFilms();
+    }
+
+    @Override
+    public Film getFilm(GetFilmQuery query) {
+        return filmRepository.getFilm(query.getFilmId());
     }
 
     @Override

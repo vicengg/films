@@ -1,19 +1,15 @@
 package com.vicen.films.framework.presentation.rest;
 
 import com.vicen.films.application.commands.CreateFilmCommand;
+import com.vicen.films.application.queries.GetFilmQuery;
 import com.vicen.films.application.queries.GetFilmsQuery;
+import com.vicen.films.application.queries.GetStaffMemberQuery;
 import com.vicen.films.application.service.FilmService;
 import com.vicen.films.domain.films.Genre;
-import com.vicen.films.framework.presentation.rest.dto.FilmDtoIn;
-import com.vicen.films.framework.presentation.rest.dto.FilmDtoOut;
-import com.vicen.films.framework.presentation.rest.dto.FilmListDto;
-import com.vicen.films.framework.presentation.rest.dto.RoleDto;
+import com.vicen.films.framework.presentation.rest.dto.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.time.Year;
 import java.util.UUID;
@@ -33,6 +29,11 @@ public class FilmsController extends BaseController {
     @RequestMapping(method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
     public FilmListDto getFilms() {
         return FilmListDto.of(filmService.getFilms(new GetFilmsQuery()));
+    }
+
+    @RequestMapping(value = "/{uuid}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
+    public FilmDtoOut getFilm(@PathVariable("uuid") String uuid) {
+        return FilmDtoOut.of(filmService.getFilm(new GetFilmQuery(UUID.fromString(uuid))));
     }
 
     @RequestMapping(method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)

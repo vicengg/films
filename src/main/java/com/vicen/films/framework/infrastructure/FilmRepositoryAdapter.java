@@ -15,6 +15,7 @@ import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
+import java.util.UUID;
 import java.util.stream.Collectors;
 
 @Repository
@@ -32,6 +33,11 @@ public class FilmRepositoryAdapter implements FilmRepository {
     @Override
     public List<Film> getFilms() {
         return filmJpaRepository.findAll().stream().map(Film.class::cast).collect(Collectors.toList());
+    }
+
+    @Override
+    public Film getFilm(UUID filmId) {
+        return filmJpaRepository.findById(filmId).orElseThrow(NotFoundError::new);
     }
 
     @Override
