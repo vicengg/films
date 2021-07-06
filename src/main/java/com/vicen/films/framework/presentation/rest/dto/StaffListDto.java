@@ -14,7 +14,7 @@ public class StaffListDto {
     }
 
     public static StaffListDto of(List<StaffMember> staff) {
-        return new StaffListDto(staff.stream().map(StaffMemberDtoOut::of).collect(Collectors.toList()));
+        return new StaffListDto(staff.stream().map(StaffMemberDtoOut::new).collect(Collectors.toList()));
     }
 
     public List<StaffMemberDtoOut> getStaff() {

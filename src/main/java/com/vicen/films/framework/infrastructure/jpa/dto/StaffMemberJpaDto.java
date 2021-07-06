@@ -1,19 +1,19 @@
 package com.vicen.films.framework.infrastructure.jpa.dto;
 
 import com.vicen.films.domain.Identifiable;
+import com.vicen.films.domain.people.Person;
 import com.vicen.films.domain.people.StaffMember;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
-import java.text.MessageFormat;
 import java.time.LocalDate;
 import java.util.UUID;
 
 @Entity
 @Table(name = "STAFF_MEMBERS")
-public class StaffMemberJpaDto implements StaffMember, Identifiable {
+public class StaffMemberJpaDto implements Identifiable, StaffMember {
 
     @Id
     @Column(name = "ID")
@@ -27,7 +27,7 @@ public class StaffMemberJpaDto implements StaffMember, Identifiable {
 
     public static StaffMemberJpaDto of(StaffMember staffMember) {
         StaffMemberJpaDto jpaDto = new StaffMemberJpaDto();
-        jpaDto.id = Identifiable.getIdFrom(staffMember);
+        jpaDto.id = Identifiable.Companion.getIdFrom(staffMember);
         jpaDto.name = staffMember.getName();
         jpaDto.lastName = staffMember.getLastName();
         jpaDto.birthDate = staffMember.getBirthDate();

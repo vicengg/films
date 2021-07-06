@@ -8,6 +8,10 @@ public abstract class ApplicationError extends RuntimeException {
         super();
     }
 
+    public ApplicationError(String message) {
+        super(message);
+    }
+
     public ApplicationError(Throwable cause) {
         super(cause.getMessage(), cause);
     }

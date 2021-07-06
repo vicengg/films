@@ -52,7 +52,7 @@ public class FilmRepositoryAdapter implements FilmRepository {
 
 
     private StaffMemberJpaDto retrieveFromJpa(StaffMember staffMember) {
-        return staffJpaRepository.findById(Identifiable.getIdFrom(staffMember)).orElseThrow(NotFoundError::new);
+        return staffJpaRepository.findById(Identifiable.Companion.getIdFrom(staffMember)).orElseThrow(NotFoundError::new);
     }
 
 }

@@ -32,11 +32,11 @@ public class FilmDtoOut extends FilmDtoIn {
             return null;
         }
         return new FilmDtoOut(
-                Identifiable.getIdFrom(film).toString(),
+                Identifiable.Companion.getIdFrom(film).toString(),
                 film.getTitle(),
                 Optional.ofNullable(film.getYear()).map(Objects::toString).orElse(null),
                 Optional.ofNullable(film.getGenre()).map(Objects::toString).orElse(null),
-                Optional.ofNullable(film.getDirector()).map(director -> Identifiable.getIdFrom(director).toString()).orElse(null),
+                Optional.ofNullable(film.getDirector()).map(director -> Identifiable.Companion.getIdFrom(director).toString()).orElse(null),
                 Optional.ofNullable(film.getCast())
                         .map(cast -> cast.stream().map(RoleDto::of).collect(Collectors.toList()))
                         .orElse(Collections.emptyList()));

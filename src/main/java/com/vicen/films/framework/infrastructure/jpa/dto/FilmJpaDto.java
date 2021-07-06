@@ -7,7 +7,6 @@ import com.vicen.films.domain.films.Role;
 import com.vicen.films.domain.people.StaffMember;
 
 import javax.persistence.*;
-import java.text.MessageFormat;
 import java.time.Year;
 import java.util.List;
 import java.util.UUID;
@@ -33,7 +32,7 @@ public class FilmJpaDto implements Film, Identifiable {
 
     public static FilmJpaDto of(Film film, StaffMemberJpaDto director, List<RoleJpaDto> cast) {
         FilmJpaDto jpaDto = new FilmJpaDto();
-        jpaDto.id = Identifiable.getIdFrom(film);
+        jpaDto.id = Identifiable.Companion.getIdFrom(film);
         jpaDto.title = film.getTitle();
         jpaDto.year = film.getYear();
         jpaDto.genre = film.getGenre();
